@@ -31,17 +31,11 @@ client.on('message', message => {
     }
     else if (data.length > 1){
       if(data[1] == "add"){
-        try{
           var guild = message.guild;
           var user = guild.members.get(message.author.id);
           for(var x = 2, n = data.length; x < n; x++){
-            user.addRole(data[x]);
+            user.addRole(data[x]).then(e => {message.reply("Successfully added role.");}).catch(e => {message.reply("Something went wrong.");});
           }
-          message.reply("Successfully added roles.");
-        }
-        catch (e){
-          message.reply("Something went wrong.");
-        }
       }
 
       else if(data[1] == "remove"){
@@ -50,7 +44,7 @@ client.on('message', message => {
           var guild = message.guild;
           var user = guild.members.get(message.author.id);
           for(var x = 2, n = data.length; x < n; x++){
-            user.removeRole(data[x]);
+            user.removeRole(data[x]).then(e => {message.reply("Successfully removed role.");}).catch(e => {message.reply("Something went wrong.");});
           }
           message.reply("Successfully removed roles.");
         }
