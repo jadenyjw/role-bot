@@ -39,7 +39,7 @@ client.on('message', message => {
                 break;
               }
             }
-            user.addRole(tmpRole).then(e => {message.reply("Successfully added role.");}).catch(e => {message.reply("Something went wrong.");});
+            user.addRole(tmpRole).then(e => {message.reply("Successfully added role.");}).catch(e => {});
           }
       }
 
@@ -56,7 +56,7 @@ client.on('message', message => {
                 break;
               }
             }
-            user.removeRole(tmpRole).then(e => {message.reply("Successfully removed role.");}).catch(e => {message.reply("Something went wrong.");});
+            user.removeRole(tmpRole).then(e => {message.reply("Successfully removed role.");}).catch(e => {});
           }
       }
 
