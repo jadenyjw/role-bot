@@ -1,6 +1,17 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+function compareRoles(a, b){
+
+  if (a.name < b.name){
+    return -1;
+  }
+  if (a.name > b.name){
+    return 1;
+  }
+  return 0;
+}
+
 client.on('message', message => {
 
   data = message.content.match(/"(?:\\"|\\\\|[^"])*"|\S+/g);
@@ -14,6 +25,7 @@ client.on('message', message => {
 
       if(data[1] == "list"){
         var guild = message.guild;
+        guild.roles = guild.roles.sort(compareRoles);
         var botPosition = 0;
         for (let [id, role] of guild.roles){
             if(role.name == "roles-bot"){
@@ -41,7 +53,7 @@ client.on('message', message => {
           var user = guild.members.get(message.author.id);
           var tmpRole;
           for(var x = 2, n = data.length; x < n; x++){
-            var parsedName = data[x].replace(/"/g, "");
+            var parsedName = data[x].replace(/"/g, "").toLowerCase();
             for (let [id, role] of guild.roles){
               if(parsedName == role.name){
                 tmpRole = role;
@@ -58,7 +70,7 @@ client.on('message', message => {
           var user = guild.members.get(message.author.id);
           var tmpRole;
           for(var x = 2, n = data.length; x < n; x++){
-            var parsedName = data[x].replace(/"/g, "");
+            var parsedName = data[x].replace(/"/g, "").toLowerCase();
             for (let [id, role] of guild.roles){
               if(parsedName == role.name){
                 tmpRole = role;
