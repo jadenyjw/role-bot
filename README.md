@@ -1,7 +1,7 @@
 # role-bot
 Simple Discord bot for role management.
 
-##Usage:
+## Usage:
 
 `rb! list` lists all users.
 `rb! add <id> <id>...`

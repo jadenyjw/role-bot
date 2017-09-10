@@ -72,7 +72,3 @@ client.login(process.env.BOT_TOKEN);
 function help(){
   return "Commands:\n `/rb list` - Lists all roles in the server.\n `/rb add` - Adds yourself to the following roles given IDs.\n`/rb remove` - Removes yourself from the following roles."
 }
-
-function added(){
-  return "You were added to the roles:"
-}
