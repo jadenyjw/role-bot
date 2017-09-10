@@ -11,15 +11,24 @@ client.on('message', message => {
     }
     else if (data.length == 2){
 
+
       if(data[1] == "list"){
         var guild = message.guild;
-        var count = 0;
+        var botPosition = 0;
+        for (let [id, role] of guild.roles){
+            if(role.name == "roles-bot"){
+              botPosition = role.calculatedPosition;
+              break;
+            }
+        }
+
         var response = "\n";
         for (let [id, role] of guild.roles){
-          if (role.name != "@everyone" && role.name != "roles-bot"){
-            response = response + "**Name**: " + role.name + "\n";
-          }
+            if(role.calculatedPosition < botPosition){
+              response = response + "**Name**: " + role.name + "\n";
+            }
         }
+
         message.reply(response);
       }
       else{
