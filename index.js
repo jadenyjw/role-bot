@@ -20,7 +20,7 @@ client.on('message', message => {
         var response = "\n";
         for (let [id, role] of guild.roles){
           if (role.name != "@everyone" && role.name != "roles-bot"){
-            response = response + "ID: " + id + " Name: " + role.name + "\n";
+            response = response + "**ID**: " + id + " **Name**: " + role.name + "\n";
           }
         }
         message.reply(response);
@@ -35,7 +35,7 @@ client.on('message', message => {
           var guild = message.guild;
           var user = guild.members.get(message.author.id);
           for(var x = 2, n = data.length; x < n; x++){
-            user.removeRole(data[x]);
+            user.addRole(data[x]);
           }
           message.reply("Successfully added roles.");
         }
@@ -63,7 +63,7 @@ client.on('message', message => {
       else{
         message.reply(help());
       }
-      
+
     }
 
 
