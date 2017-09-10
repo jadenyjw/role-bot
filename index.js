@@ -7,7 +7,7 @@ client.on('message', message => {
   data = message.content.split(" ");
 
 
-  if(data[0] == "rb!"){
+  if(data[0] == "/rb"){
 
     if (data.length == 1){
       message.reply(help());
@@ -29,21 +29,35 @@ client.on('message', message => {
         message.reply(help());
       }
     }
-    else if (data.length > 2){
+    else if (data.length > 1){
       if(data[1] == "add"){
-        var guild = message.guild;
-        var user = guild.members.get(message.author.id);
-        for(var x = 2, n = data.length; x < n; x++){
-          user.addRole(data[x]);
+        try{
+          var guild = message.guild;
+          var user = guild.members.get(message.author.id);
+          for(var x = 2, n = data.length; x < n; x++){
+            user.removeRole(data[x]);
+          }
+          message.reply("Successfully added roles.");
+        }
+        catch (e){
+          message.reply("Something went wrong.");
         }
       }
 
       else if(data[1] == "remove"){
-        var guild = message.guild;
-        var user = guild.members.get(message.author.id);
-        for(var x = 2, n = data.length; x < n; x++){
-          user.removeRole(data[x]);
+
+        try{
+          var guild = message.guild;
+          var user = guild.members.get(message.author.id);
+          for(var x = 2, n = data.length; x < n; x++){
+            user.removeRole(data[x]);
+          }
+          message.reply("Successfully removed roles.");
         }
+        catch (e){
+          message.reply("Something went wrong.");
+        }
+
       }
     }
 
@@ -52,11 +66,11 @@ client.on('message', message => {
 
 });
 
-client.login('process.env.BOT_TOKEN');
+client.login(process.env.BOT_TOKEN);
 
 
 function help(){
-  return "Commands:\n list - Lists all roles in the server.\n add - Adds yourself to the following roles given IDs."
+  return "Commands:\n `/rb list` - Lists all roles in the server.\n `/rb add` - Adds yourself to the following roles given IDs.\n`/rb remove` - Removes yourself from the following roles."
 }
 
 function added(){
