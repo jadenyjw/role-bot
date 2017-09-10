@@ -24,7 +24,7 @@ client.on('message', message => {
 
         var response = "\n";
         for (let [id, role] of guild.roles){
-            if(role.calculatedPosition < botPosition){
+            if(role.calculatedPosition < botPosition && role.name != "@everyone"){
               response = response + "**Name**: " + role.name + "\n";
             }
         }
