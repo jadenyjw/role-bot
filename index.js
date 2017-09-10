@@ -58,7 +58,3 @@ client.login('process.env.BOT_TOKEN');
 function help(){
   return "Commands:\n list - Lists all roles in the server.\n add - Adds yourself to the following roles given IDs."
 }
-
-function added(){
-  return "You were added to the roles:"
-}
