@@ -55,7 +55,7 @@ client.on('message', message => {
           for(var x = 2, n = data.length; x < n; x++){
             var parsedName = data[x].replace(/"/g, "").toLowerCase();
             for (let [id, role] of guild.roles){
-              if(parsedName == role.name){
+              if(parsedName == role.name.toLowerCase()){
                 tmpRole = role;
                 break;
               }
@@ -72,7 +72,7 @@ client.on('message', message => {
           for(var x = 2, n = data.length; x < n; x++){
             var parsedName = data[x].replace(/"/g, "").toLowerCase();
             for (let [id, role] of guild.roles){
-              if(parsedName == role.name){
+              if(parsedName == role.name.toLowerCase()){
                 tmpRole = role;
                 break;
               }
