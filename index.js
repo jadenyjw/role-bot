@@ -12,6 +12,10 @@ function compareRoles(a, b){
   return 0;
 }
 
+client.on('ready', () => {
+  client.user.setGame('/rb');
+})
+
 client.on('message', message => {
 
   data = message.content.match(/"(?:\\"|\\\\|[^"])*"|\S+/g);
