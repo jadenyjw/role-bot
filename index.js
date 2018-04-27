@@ -12,11 +12,11 @@ function compareRoles(a, b){
   return 0;
 }
 
-function luke(message) {
-		message.react("🇱")
-		message.react("🇺")
-		message.react("🇰")
-		message.react("🇪")
+async function luke(message) {
+		await message.react("🇱")
+		await message.react("🇺")
+		await message.react("🇰")
+		await message.react("🇪")
 }
 
 
@@ -28,12 +28,8 @@ client.on('ready', () => {
 client.on('message', message => {
 
   // LUKE
-  console.log(message.author.id);
-  if (message.author.id == "120540594782076930"){
-
-    console.log(message)
+  if (message.author.id == "332299012277534730"){
     luke(message);
-
   }
 
 
