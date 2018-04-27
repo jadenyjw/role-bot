@@ -12,11 +12,30 @@ function compareRoles(a, b){
   return 0;
 }
 
+function luke(message) {
+		message.react("🇱")
+		message.react("🇺")
+		message.react("🇰")
+		message.react("🇪")
+}
+
+
 client.on('ready', () => {
   client.user.setGame('/rb');
 })
 
+
 client.on('message', message => {
+
+  // LUKE
+  console.log(message.author.id);
+  if (message.author.id == "120540594782076930"){
+
+    console.log(message)
+    luke(message);
+
+  }
+
 
   data = message.content.match(/"(?:\\"|\\\\|[^"])*"|\S+/g);
   if(data[0] == "/rb"){
