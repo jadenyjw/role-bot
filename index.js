@@ -27,12 +27,6 @@ client.on('ready', () => {
 
 client.on('message', message => {
 
-  // LUKE
-  if (message.author.id == "332299012277534730"){
-    luke(message);
-  }
-
-
   data = message.content.match(/"(?:\\"|\\\\|[^"])*"|\S+/g);
   if(data[0] == "/rb"){
 
