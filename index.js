@@ -12,18 +12,9 @@ function compareRoles(a, b){
   return 0;
 }
 
-async function luke(message) {
-		await message.react("🇱")
-		await message.react("🇺")
-		await message.react("🇰")
-		await message.react("🇪")
-}
-
-
 client.on('ready', () => {
   client.user.setGame('/rb');
 })
-
 
 client.on('message', message => {
 
@@ -35,7 +26,6 @@ client.on('message', message => {
     }
     else if (data.length == 2){
 
-
       if(data[1] == "list"){
         var guild = message.guild;
         guild.roles = guild.roles.sort(compareRoles);
@@ -46,20 +36,20 @@ client.on('message', message => {
               break;
             }
         }
-
+	      
         var response = "\n";
         for (let [id, role] of guild.roles){
             if(role.calculatedPosition < botPosition && role.name != "@everyone"){
               response = response + "**Name**: " + role.name + "\n";
             }
         }
-
         message.reply(response);
       }
       else{
         message.reply(help());
       }
     }
+	  
     else if (data.length > 1){
       if(data[1] == "add"){
           var guild = message.guild;
@@ -78,7 +68,6 @@ client.on('message', message => {
       }
 
       else if(data[1] == "remove"){
-
           var guild = message.guild;
           var user = guild.members.get(message.author.id);
           var tmpRole;
@@ -93,20 +82,15 @@ client.on('message', message => {
             user.removeRole(tmpRole).then(e => {message.reply("Successfully removed role.");}).catch(e => {});
           }
       }
-
       else{
         message.reply(help());
       }
-
     }
-
-
   }
 
 });
 
 client.login(process.env.BOT_TOKEN);
-
 
 function help(){
   return "Commands:\n`/rb list` - Lists all roles in the server.\n`/rb add \"role\" \"role\"...` - Adds yourself to the following roles with role names in quotes.\n`/rb remove \"role\" \"role\"...` - Removes yourself from the following roles with role names in quotes."
