@@ -1,6 +1,25 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+const embed = {
+  "color": 123456,
+  "timestamp": "2018-07-23T16:11:57.196Z",
+  "fields": [
+    {
+      "name": "Listing Roles",
+      "value": "```/rb list```"
+    },
+    {
+      "name": "Adding Roles",
+      "value": "```/rb add \"role1\" \"role2\" ...```"
+    },
+    {
+      "name": "Removing Roles",
+      "value": "```/rb remove \"role1\" \"role2\" ...```"
+    }
+  ]
+};
+
 function compareRoles(a, b){
 
   if (a.name < b.name){
@@ -93,5 +112,5 @@ client.on('message', message => {
 client.login(process.env.BOT_TOKEN);
 
 function help(){
-  return "Commands:\n`/rb list` - Lists all roles in the server.\n`/rb add \"role\" \"role\"...` - Adds yourself to the following roles with role names in quotes.\n`/rb remove \"role\" \"role\"...` - Removes yourself from the following roles with role names in quotes."
+  return embed;
 }
