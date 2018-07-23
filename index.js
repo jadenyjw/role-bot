@@ -3,7 +3,6 @@ const client = new Discord.Client();
 
 const embed = {
   "color": 123456,
-  "timestamp": new Date(),
   "fields": [
     {
       "name": "Listing Roles",
