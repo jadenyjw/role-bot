@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 const embed = {
   "color": 123456,
-  "timestamp": "2018-07-23T16:11:57.196Z",
+  "timestamp": new Date(),
   "fields": [
     {
       "name": "Listing Roles",
@@ -38,10 +38,10 @@ client.on('ready', () => {
 client.on('message', message => {
 
   data = message.content.match(/"(?:\\"|\\\\|[^"])*"|\S+/g);
-  if(data[0] == "/rb"){
+  if(data != null && data[0] == "/rb"){
 
     if (data.length == 1){
-      message.reply(help());
+      message.reply({embed});
     }
     else if (data.length == 2){
 
@@ -55,7 +55,7 @@ client.on('message', message => {
               break;
             }
         }
-	      
+
         var response = "\n";
         for (let [id, role] of guild.roles){
             if(role.calculatedPosition < botPosition && role.name != "@everyone"){
@@ -65,10 +65,10 @@ client.on('message', message => {
         message.reply(response);
       }
       else{
-        message.reply(help());
+        message.reply({embed});
       }
     }
-	  
+
     else if (data.length > 1){
       if(data[1] == "add"){
           var guild = message.guild;
@@ -102,7 +102,7 @@ client.on('message', message => {
           }
       }
       else{
-        message.reply(help());
+        message.reply({embed});
       }
     }
   }
@@ -110,7 +110,3 @@ client.on('message', message => {
 });
 
 client.login(process.env.BOT_TOKEN);
-
-function help(){
-  return embed;
-}
